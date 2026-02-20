@@ -1,117 +1,137 @@
-# Fluxer Mobile Client V2
+# Fluxer Mobile Client
 
-A basic but fully functional Fluxer chat client built with React Native and Expo.
+A React Native chat client for Fluxer built with Expo. Feature-complete mobile app with login, channels, servers, direct messages, and image sharing.
+
+## Quick Start
+
+### Prerequisites
+- Node.js v18+
+- npm
+
+### Installation & Running
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Run on:
+# - Android emulator: Press 'a'
+# - iOS simulator: Press 'i'
+# - Web browser: Press 'w'
+# - Expo Go app: Scan QR code
+```
+
+## Build for Android APK
+
+### Cloud Build (Recommended - Works on Windows/Mac/Linux)
+
+```bash
+# Log in to Expo
+npx eas login
+
+# Build APK via EAS (cloud)
+npm run build:android-apk
+
+# Follow prompts. When done, download the APK from the Expo dashboard or the CLI output link.
+```
+
+### Local Build (macOS/Linux only)
+
+```bash
+npx eas build --platform android --profile production --local
+```
+
 
 ## Features
 
-✅ **Authentication** - Login/Register with demo mode support  
-✅ **Channel List** - Browse available channels  
-✅ **Real-time Chat** - Send and receive messages  
-✅ **User-friendly UI** - Discord-inspired dark theme  
-✅ **TypeScript** - Full type safety
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn
-- Expo CLI: `npm install -g expo-cli`
-
-### Installation
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start the development server:**
-   ```bash
-   npm start
-   ```
-
-3. **Run on your platform:**
-   - **iOS**: Press `i` to open in iOS Simulator
-   - **Android**: Press `a` to open in Android Emulator
-   - **Web**: Press `w` to open in browser
-   - **Expo Go**: Scan QR code with Expo Go app on your phone
-
-### Demo Credentials
-
-The app currently runs in demo mode. You can login with any email/password combination:
-
-- **Email**: test@example.com
-- **Password**: anything
+- ✅ **Authentication** – Login/register with email & password, IP verification support
+- ✅ **Channels** – Browse and chat in channels  
+- ✅ **Direct Messages** – 1-on-1 messaging
+- ✅ **Servers/Guilds** – Browse guild channels
+- ✅ **Image Sharing** – Send images from camera roll
+- ✅ **Dark Theme** – Discord-inspired dark UI
+- ✅ **Type-Safe** – Full TypeScript support
+- ✅ **Real-Time** – Message polling with live updates
 
 ## Project Structure
 
 ```
 src/
+├── components/           # Reusable UI components
+│   ├── Screen.tsx        # Safe area wrapper
+│   ├── GoogleRecaptcha.tsx
+│   └── HCaptchaComponent.tsx
 ├── config/
-│   └── api.ts              # API configuration and endpoints
+│   └── api.ts            # API base URL configuration
 ├── context/
-│   └── AuthContext.tsx     # Authentication context & provider
-├── screens/
-│   ├── LoginScreen.tsx     # Login/Register screen
+│   └── AuthContext.tsx   # Auth state management
+├── screens/              # App screens
+│   ├── LoginScreen.tsx   # Login/register
 │   ├── ChannelListScreen.tsx
-│   └── ChatScreen.tsx      # Message display & input
+│   ├── ChatScreen.tsx    # Message display & input
+│   ├── ServerListScreen.tsx
+│   └── GuildChannelListScreen.tsx
+└── services/
+    └── api.ts            # API client (login, channels, messages, etc.)
 ```
 
-## Architecture
+## Recent Changes & Fixes
 
-- **AuthContext**: Manages user authentication state
-- **Screen Navigation**: Simple state-based navigation (login → channels → chat)
-- **Screens**: Three main screens - Login, Channel List, and Chat
-- **Demo Mode**: Currently uses mock data for channels and messages
+✅ **Dependencies Fixed**
+- Resolved npm peer dependency conflicts (react-native-modal, @hcaptcha)
+- Removed unused react-native-google-recaptcha-v2 package
 
-## Next Steps for Production
+✅ **TypeScript Compilation**
+- All source files compile without errors (`npx tsc --noEmit`)
+- Unified Channel type usage across app
+- Proper type inference for API responses
 
-1. **Connect to Real Backend**:
-   - Update `AuthContext.tsx` with actual API calls
-   - Implement WebSocket connection for real-time messages
+✅ **EAS Build Configuration**
+- eas.json configured for Android APK builds
+- Added `npm run build:android-apk` script
 
-2. **Add Features**:
-   - Server/Guild support
-   - User profiles
-   - Voice/Video calls (using Fluxer Media Proxy)
-   - Message reactions & editing
-   - Typing indicators
-   - User presence
+## Configuration
 
-3. **Performance**:
-   - Message pagination
-   - Image/file upload support
-   - Caching strategy
+### API Endpoint
+Default: `https://api.fluxer.app`
 
-4. **Testing**:
-   - Unit tests for services
-   - Component tests
-   - E2E tests
+Update in `src/config/api.ts`:
+```typescript
+export const FLUXER_API_BASE_URL = 'https://your-api-url.com';
+```
+
+### Captcha
+Current: hCaptcha (site key in LoginScreen.tsx)
 
 ## Available Scripts
 
-- `npm start` - Start Expo development server
-- `npm run android` - Run on Android emulator
-- `npm run ios` - Run on iOS simulator
-- `npm run web` - Run in web browser
+```bash
+npm start              # Start dev server
+npm run android        # Run on Android emulator
+npm run ios            # Run on iOS simulator
+npm run web            # Run in browser
+npm run build:android-apk   # Build APK via EAS cloud
+```
 
 ## Troubleshooting
 
-**Issue**: Metro bundler errors
-- **Solution**: Clear cache with `expo start --clear`
+| Issue | Solution |
+|-------|----------|
+| Metro bundler errors | `npm start --clear` |
+| Modules not found | `npm install` and verify node_modules |
+| Port already in use | Expo auto-selects a new port |
+| Build fails on Windows | Use EAS cloud build (`npm run build:android-apk`), not local |
 
-**Issue**: Modules not found
-- **Solution**: Run `npm install` again and ensure node_modules exists
+## Documentation
 
-**Issue**: Port already in use
-- **Solution**: Expo will automatically choose a different port
-
-## Resources
-
-- [Fluxer Documentation](https://docs.fluxer.app)
-- [Expo Documentation](https://docs.expo.dev)
+- [Fluxer Docs](https://docs.fluxer.app)
+- [Expo Docs](https://docs.expo.dev)
 - [React Native Docs](https://reactnative.dev)
 
 ## License
 
 MIT
+
