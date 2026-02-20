@@ -47,14 +47,14 @@ npx eas build --platform android --profile production --local
 
 ## Features
 
-- ✅ **Authentication** – Login/register with email & password, IP verification support
-- ✅ **Channels** – Browse and chat in channels  
-- ✅ **Direct Messages** – 1-on-1 messaging
-- ✅ **Servers/Guilds** – Browse guild channels
-- ✅ **Image Sharing** – Send images from camera roll
-- ✅ **Dark Theme** – Discord-inspired dark UI
-- ✅ **Type-Safe** – Full TypeScript support
-- ✅ **Real-Time** – Message polling with live updates
+- **Authentication** – Login/register with email & password, IP verification support
+- **Channels** – Browse and chat in channels  
+- **Direct Messages** – 1-on-1 messaging
+- **Servers/Guilds** – Browse guild channels
+- **Image Sharing** – Send images from camera roll
+- **Dark Theme** – Discord-inspired dark UI
+- **Type-Safe** – Full TypeScript support
+- **Real-Time** – Message polling with live updates
 
 ## Project Structure
 
@@ -80,16 +80,16 @@ src/
 
 ## Recent Changes & Fixes
 
-✅ **Dependencies Fixed**
+Dependencies Fixed
 - Resolved npm peer dependency conflicts (react-native-modal, @hcaptcha)
 - Removed unused react-native-google-recaptcha-v2 package
 
-✅ **TypeScript Compilation**
+TypeScript Compilation
 - All source files compile without errors (`npx tsc --noEmit`)
 - Unified Channel type usage across app
 - Proper type inference for API responses
 
-✅ **EAS Build Configuration**
+EAS Build Configuration
 - eas.json configured for Android APK builds
 - Added `npm run build:android-apk` script
 
